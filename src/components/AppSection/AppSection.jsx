@@ -1,17 +1,14 @@
 //Import
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, memo } from "react";
 import Todos from "./Todos/Todos";
 import Notes from "./Notes/Notes";
-import Timer from "./Timer/Timer";
+import Timer from "../Form/Timer/Timer";
 //Icons
 import { LeftIcon, RightIcon } from "../../Icons/Icons";
 
 function AppSection() {
   const [mobileState, setMobileState] = useState(0);
-  const todos = useSelector((state) => state.todoSlicer.todos);
 
-  console.log(todos);
   const leftHandle = () => {
     if (mobileState === 0) {
       setMobileState(-1);
@@ -33,7 +30,6 @@ function AppSection() {
   const windowWith = window.innerWidth;
   return (
     <div className="flex flex-col w-full">
-      <div className="flex justify-center">Search</div>
       {windowWith < 768 ? (
         <div className="flex flex-row justify-between">
           <div
@@ -42,9 +38,21 @@ function AppSection() {
             <LeftIcon size={24} />
           </div>
           <div className="w-full">
-            {mobileState === -1 && <Notes />}
-            {mobileState === 0 && <Todos />}
-            {mobileState === 1 && <Timer />}
+            {mobileState === -1 && (
+              <div className="my-5">
+                <Notes />
+              </div>
+            )}
+            {mobileState === 0 && (
+              <div className="my-5">
+                <Todos />
+              </div>
+            )}
+            {mobileState === 1 && (
+              <div className="my-20 flex justify-center items-center">
+                <Timer />
+              </div>
+            )}
           </div>
           <div
             className="flex flex-col justify-center px-2 text-purple-800"
@@ -53,14 +61,14 @@ function AppSection() {
           </div>
         </div>
       ) : (
-        <div>
-          <Todos />
-          <Notes />
-          <Timer />
+        <div className="px-10">
+          <div className="mb-5">
+            <Notes device={true} />
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-export default AppSection;
+export default memo(AppSection);
