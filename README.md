@@ -6,6 +6,6 @@ React Icons Kit https://react-icons-kit.vercel.app/
 
 ## Tailwind Css
 
-### Todos and Notes are ready to use. They are styled with Tailwind Css and stored in a localStorage.
+### Todos, Timer and Notes are ready to use. They are styled with Tailwind Css and stored in a localStorage.
 
-### Still thinking about ui and timer.
+### Still needs some styling changes.
