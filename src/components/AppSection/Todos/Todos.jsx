@@ -1,25 +1,31 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Todo from "./Todo";
+import React from "react"
+import { useSelector } from "react-redux"
+import Todo from "./Todo"
+import List from "@mui/material/List"
 
 function Todos({ device }) {
-  const TODOS = useSelector((state) => state.todoSlicer.todos);
+  const TODOS = useSelector((state) => state.todoSlicer.todos)
+  const theme = useSelector((state) => state.themeSlicer.theme)
   return (
-    <div className={`bg-orange-500 ${device && "p-5"}`}>
-      <h1 className="flex justify-center text-lg bg-yellow-100">TODOS</h1>
-      {TODOS.map((todo) => {
-        return (
-          <Todo
-            device={device}
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            completed={todo.completed}
-          />
-        );
-      })}
+    <div
+      className={`${
+        device && `p-5 -my-5 ${theme ? "bg-slate-200" : "bg-slate-500"}`
+      } `}>
+      <List>
+        {TODOS.map((todo) => {
+          return (
+            <Todo
+              theme={theme}
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              completed={todo.completed}
+            />
+          )
+        })}
+      </List>
     </div>
-  );
+  )
 }
 
-export default Todos;
+export default Todos

@@ -1,19 +1,25 @@
-import React, { memo } from "react";
+import React from "react"
+import TextField from "@mui/material/TextField"
 
-function NoteAdd({ note, setNote }) {
+function NoteAdd({ note, setNote, theme }) {
   return (
     <section className="flex justify-center mt-5">
-      <textarea
-        className="w-full md:w-3/4 resize-none"
+      <TextField
         rows={3}
-        type="text"
+        multiline
+        fullWidth
+        label="Add a note"
+        color="info"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        placeholder="Add a note"
-        title="Only alphanumeric characters allowed"
+        style={{
+          width: "100%",
+          background: theme ? "white" : "rgb(226 232 240)",
+          borderRadius: 5,
+        }}
       />
     </section>
-  );
+  )
 }
 
-export default NoteAdd;
+export default NoteAdd

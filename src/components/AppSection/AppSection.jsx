@@ -1,33 +1,33 @@
 //Import
-import React, { useState, memo } from "react";
-import Todos from "./Todos/Todos";
-import Notes from "./Notes/Notes";
-import Timer from "../Form/Timer/Timer";
+import React, { useState, memo } from "react"
+import Todos from "./Todos/Todos"
+import Notes from "./Notes/Notes"
+import Dialog from "../Form/Timer/Dialog"
 //Icons
-import { LeftIcon, RightIcon } from "../../Icons/Icons";
+import { LeftIcon, RightIcon } from "../../Icons/Icons"
 
 function AppSection() {
-  const [mobileState, setMobileState] = useState(0);
+  const [mobileState, setMobileState] = useState(0)
 
   const leftHandle = () => {
     if (mobileState === 0) {
-      setMobileState(-1);
+      setMobileState(-1)
     } else if (mobileState === 1) {
-      setMobileState(0);
+      setMobileState(0)
     } else if (mobileState === -1) {
-      setMobileState(1);
+      setMobileState(1)
     }
-  };
+  }
   const rightHandle = () => {
     if (mobileState === 0) {
-      setMobileState(1);
+      setMobileState(1)
     } else if (mobileState === 1) {
-      setMobileState(-1);
+      setMobileState(-1)
     } else if (mobileState === -1) {
-      setMobileState(0);
+      setMobileState(0)
     }
-  };
-  const windowWith = window.innerWidth;
+  }
+  const windowWith = window.innerWidth
   return (
     <div className="flex flex-col w-full">
       {windowWith < 768 ? (
@@ -50,7 +50,7 @@ function AppSection() {
             )}
             {mobileState === 1 && (
               <div className="my-20 flex justify-center items-center">
-                <Timer />
+                <Dialog />
               </div>
             )}
           </div>
@@ -61,14 +61,14 @@ function AppSection() {
           </div>
         </div>
       ) : (
-        <div className="px-10">
+        <div className="ml-5 mr-16 sticky top-10 z-40">
           <div className="mb-5">
             <Notes device={true} />
           </div>
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default memo(AppSection);
+export default memo(AppSection)

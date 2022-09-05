@@ -1,34 +1,36 @@
-import React, { useState, memo } from "react";
-import TodoAdd from "./TodoAdd";
-import NoteAdd from "./NoteAdd";
-import AddingButton from "./AddingButton";
-import Timer from "./Timer/Timer";
-import Todos from "../AppSection/Todos/Todos";
-import { addTodo } from "../../store/Slicers/todoSlicer";
-import { addNotes } from "../../store/Slicers/noteSlicer";
-import { nanoid } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react"
+import TodoAdd from "./TodoAdd"
+import NoteAdd from "./NoteAdd"
+import AddingButton from "./AddingButton"
+import Todos from "../AppSection/Todos/Todos"
+import Dialog from "./Timer/Dialog"
+import { addTodo } from "../../store/Slicers/todoSlicer"
+import { addNotes } from "../../store/Slicers/noteSlicer"
+import { nanoid } from "@reduxjs/toolkit"
+import { useDispatch, useSelector } from "react-redux"
 
 function Form() {
-  const [note, setNote] = useState("");
-  const [todo, setTodo] = useState("");
-  const dispatch = useDispatch();
-  const d = new Date();
-  let day = `${d.getDate()} ${d.getMonth()} ${d.getFullYear()}`;
+  const [note, setNote] = useState("")
+  const [todo, setTodo] = useState("")
+  const [todoVal, setTodoVal] = useState(true)
+  const theme = useSelector((state) => state.themeSlicer.theme)
+  const dispatch = useDispatch()
+  const d = new Date()
+  let day = `${d.getDate()} ${d.getMonth()} ${d.getFullYear()}`
   const formHandle = (e) => {
-    e.preventDefault();
-    if (note.length === 0 && todo.length > 0) {
+    e.preventDefault()
+    if (note.length === 0 && todo.length > 0 && todoVal) {
       dispatch(
         addTodo({
           id: nanoid(10),
           title: todo,
           completed: false,
         }),
-      );
-      setTodo("");
-    } else if (note.length > 0 && todo.length === 0) {
-      alert("Pls enter a title");
-    } else if (note.length > 0 && todo.length > 0) {
+      )
+      setTodo("")
+    } else if (note.length > 0 && todo.length === 0 && !todoVal) {
+      alert("Pls enter a title")
+    } else if (note.length > 0 && todo.length > 0 && todoVal) {
       dispatch(
         addNotes({
           date: day,
@@ -38,33 +40,43 @@ function Form() {
           title: todo,
           isOpened: false,
         }),
-      );
-      setTodo("");
-      setNote("");
+      )
+      setTodo("")
+      setNote("")
     } else {
-      alert("Pls enter a title and a note");
+      alert("Pls enter a title and a note")
     }
-  };
-  const windowWith = window.innerWidth;
+  }
+  const windowWith = window.innerWidth
   return (
-    <section className="px-5 md:px-0 flex flex-col h-full">
-      <form className="mt-5 p-5 bg-yellow-800" onSubmit={formHandle}>
-        <TodoAdd todo={todo} setTodo={setTodo} />
-        <NoteAdd note={note} setNote={setNote} />
-        <AddingButton />
+    <section className="flex flex-col">
+      <form
+        className={`p-5 flex flex-col justify-center sticky top-10 z-40 ${
+          theme ? "bg-slate-200" : "bg-slate-500"
+        }`}
+        onSubmit={formHandle}>
+        <TodoAdd
+          todo={todo}
+          setTodo={setTodo}
+          setTodoVal={setTodoVal}
+          todoVal={todoVal}
+          theme={theme}
+        />
+        <NoteAdd note={note} setNote={setNote} theme={theme} />
+        <AddingButton todo={todo} formHandle={formHandle} />
       </form>
       {windowWith >= 768 && (
         <>
           <section className="my-5">
             <Todos device={true} />
           </section>
-          <div className="sticky mt-auto bottom-10">
-            <Timer device={true} />
+          <div className="sticky bottom-0 mt-auto z-50">
+            <Dialog />
           </div>
         </>
       )}
     </section>
-  );
+  )
 }
 
-export default Form;
+export default Form

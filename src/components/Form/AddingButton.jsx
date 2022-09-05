@@ -1,16 +1,19 @@
-import React, { memo } from "react";
+import React from "react"
+import Button from "@mui/material/Button"
 
-function AddingButton() {
+function AddingButton({ todo, formHandle }) {
   return (
-    <section className="flex justify-center mt-5">
-      <button
-        type="submit"
-        className="border border-red-900 bg-red-500 text-white
-  active:border-yellow-500 active:bg-orange-400 w-full md:w-3/4">
+    <section className="flex mt-5 ">
+      <Button
+        color="success"
+        onClick={formHandle}
+        variant="contained"
+        disabled={!todo}
+        style={{ width: "100%" }}>
         Add
-      </button>
+      </Button>
     </section>
-  );
+  )
 }
 
-export default AddingButton;
+export default AddingButton

@@ -1,19 +1,22 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React from "react"
+import { useDispatch } from "react-redux"
 import {
   isDisabled,
   changeNotes,
   deleteNotes,
-} from "../../../store/Slicers/noteSlicer";
+} from "../../../store/Slicers/noteSlicer"
 
-function NoteFooter({ note, cargo }) {
-  const dispatch = useDispatch();
+function NoteFooter({ note, cargo, theme }) {
+  const dispatch = useDispatch()
   const textAreaHandle = () => {
-    dispatch(isDisabled(note.id));
-    dispatch(changeNotes({ text: cargo, id: note.id }));
-  };
+    dispatch(isDisabled(note.id))
+    dispatch(changeNotes({ text: cargo, id: note.id }))
+  }
   return (
-    <div className="flex justify-between pt-2">
+    <div
+      className={`flex justify-between pt-2 ${
+        theme ? "bg-slate-100" : "bg-slate-300"
+      }`}>
       <div>
         {note.isDisabled ? (
           <button
@@ -37,7 +40,7 @@ function NoteFooter({ note, cargo }) {
 
       <span>{note.date}</span>
     </div>
-  );
+  )
 }
 
-export default NoteFooter;
+export default NoteFooter
