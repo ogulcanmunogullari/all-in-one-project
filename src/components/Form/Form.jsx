@@ -15,8 +15,22 @@ function Form() {
   const [todoVal, setTodoVal] = useState(true)
   const theme = useSelector((state) => state.themeSlicer.theme)
   const dispatch = useDispatch()
+  const months = {
+    0: "January",
+    1: "February",
+    2: "March",
+    3: "April",
+    4: "May",
+    5: "June",
+    6: "July",
+    7: "August",
+    8: "September",
+    9: "October",
+    10: "November",
+    11: "December",
+  }
   const d = new Date()
-  let day = `${d.getDate()} ${d.getMonth()} ${d.getFullYear()}`
+  let day = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`
   const formHandle = (e) => {
     e.preventDefault()
     if (note.length === 0 && todo.length > 0 && todoVal) {
