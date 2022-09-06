@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import TextField from "@mui/material/TextField"
 
 function TodoAdd({ todo, setTodo, setTodoVal, todoVal, theme }) {
-  if (todo) {
-    const regex = /([a-z\d\sşŞıİğĞöÖüÜçÇ+])/gi
-    const test = todo.match(regex)
-    setTodoVal(test?.length === todo?.length)
-  }
+  useEffect(() => {
+    if (todo) {
+      const regex = /([a-z\d\sşŞıİğĞöÖüÜçÇ'.?+])/gi
+      const test = todo.match(regex)
+      setTodoVal(test?.length === todo?.length)
+    }
+  }, [todo, setTodoVal])
 
   return (
     <section className="flex justify-center">

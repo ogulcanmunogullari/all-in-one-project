@@ -7,7 +7,7 @@ function NoteTitle({ title, id, opened, theme }) {
   const dispatch = useDispatch()
   return (
     <div
-      className={`flex justify-between py-2 ${
+      className={`flex justify-between p-2 ${
         theme ? "bg-slate-100" : "bg-slate-300"
       }`}>
       <h1 className="text-xl font-semibold">{title}</h1>

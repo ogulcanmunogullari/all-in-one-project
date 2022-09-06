@@ -55,17 +55,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 export default function CustomizedSwitches() {
   const dispatch = useDispatch()
   const theme = useSelector((state) => state.themeSlicer.theme)
-  console.log(theme)
   return (
     <FormGroup>
       <FormControlLabel
         control={
           <MaterialUISwitch
-            sx={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-            }}
             theme={theme}
             checked={theme}
             onChange={() => {

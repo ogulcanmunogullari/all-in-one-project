@@ -12,18 +12,13 @@ function Notes({ device }) {
     <div>
       {NOTES.length > 0 && (
         <div
-          className={`${
-            theme
-              ? `${device ? "bg-slate-200" : "bg-slate-50"}`
-              : "bg-slate-500"
-          } mb-2 ${device && "p-5"} `}>
+          className={`${theme ? "bg-slate-200" : "bg-slate-500"} mb-2 
+          ${device ? "p-5" : "p-2"} `}>
           {NOTES.map((note) => {
             return (
               <div
                 key={note.id}
-                className={`p-2 ${
-                  theme ? "bg-slate-50" : "bg-slate-300"
-                } last:mb-0 mb-5`}>
+                className={`flex flex-col gap-1 last:mb-0 mb-5`}>
                 <NoteTitle
                   theme={theme}
                   opened={note.isOpened}

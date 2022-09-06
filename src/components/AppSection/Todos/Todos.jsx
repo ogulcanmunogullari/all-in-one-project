@@ -8,9 +8,10 @@ function Todos({ device }) {
   const theme = useSelector((state) => state.themeSlicer.theme)
   return (
     <div
-      className={`${
-        device && `p-5 -my-5 ${theme ? "bg-slate-200" : "bg-slate-500"}`
-      } `}>
+      className={`
+      ${device ? "p-5 -my-5" : "px-2"}
+      ${theme ? "bg-slate-200" : "bg-slate-500"}
+      `}>
       <List>
         {TODOS.map((todo) => {
           return (

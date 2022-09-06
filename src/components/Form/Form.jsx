@@ -51,7 +51,7 @@ function Form() {
   return (
     <section className="flex flex-col">
       <form
-        className={`p-5 flex flex-col justify-center sticky top-10 z-40 ${
+        className={`p-5 flex flex-col justify-center sticky top-16 z-40 ${
           theme ? "bg-slate-200" : "bg-slate-500"
         }`}
         onSubmit={formHandle}>

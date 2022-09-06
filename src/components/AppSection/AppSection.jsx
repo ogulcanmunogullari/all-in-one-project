@@ -12,7 +12,6 @@ function AppSection() {
   const todo = useSelector((state) => state.todoSlicer.todos)
   const note = useSelector((state) => state.noteSlicer.notes)
   const theme = useSelector((state) => state.themeSlicer.theme)
-  console.log(theme)
 
   const leftHandle = () => {
     if (mobileState === 0) {
@@ -32,62 +31,127 @@ function AppSection() {
       setMobileState(0)
     }
   }
+  const leftIconReturn = (x) => {
+    if (x.length > 0) {
+      return x.map((item, index) => {
+        return (
+          index % 4 === 0 && (
+            <LeftIcon size={24} key={index} onClick={leftHandle} />
+          )
+        )
+      })
+    } else {
+      return <LeftIcon size={24} onClick={leftHandle} />
+    }
+  }
+  const rightIconReturn = (x) => {
+    if (x.length > 0) {
+      return x.map((item, index) => {
+        return (
+          index % 4 === 0 && (
+            <RightIcon size={24} key={index} onClick={leftHandle} />
+          )
+        )
+      })
+    } else {
+      return <RightIcon size={24} onClick={rightHandle} />
+    }
+  }
+
   const windowWith = window.innerWidth
   return (
     <div className="flex flex-col w-full">
       {windowWith < 768 ? (
         <div className="flex flex-row justify-between">
-          <div
-            className="flex flex-col justify-center px-2 text-purple-800"
-            onClick={leftHandle}>
-            <LeftIcon size={24} />
-          </div>
           <div className="w-full">
             {mobileState === -1 && (
-              <div className="my-5">
-                {note.length > 0 ? (
-                  <Notes />
-                ) : (
-                  <div
-                    className={`flex justify-center items-center py-28 
+              <div className="flex my-5">
+                <div
+                  className={`flex flex-col justify-around px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={leftHandle}>
+                  {leftIconReturn(note)}
+                </div>
+                <div className="w-full">
+                  {note.length > 0 ? (
+                    <Notes />
+                  ) : (
+                    <div
+                      className={`flex justify-center items-center py-28 
                    ${
                      theme === true
                        ? "bg-slate-200"
                        : "bg-slate-500 text-slate-100"
                    }`}>
-                    There is no notes.
-                  </div>
-                )}
+                      There is no notes.
+                    </div>
+                  )}
+                </div>
+                <div
+                  className={`flex flex-col justify-around px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={rightHandle}>
+                  {rightIconReturn(note)}
+                </div>
               </div>
             )}
             {mobileState === 0 && (
-              <div className="my-5">
-                {todo.length > 0 ? (
-                  <Todos />
-                ) : (
-                  <div
-                    className={`flex justify-center items-center  py-28 ${
-                      theme ? "bg-slate-200" : "bg-slate-500 text-slate-100"
-                    }`}>
-                    There is no todos.
-                  </div>
-                )}
+              <div className=" my-5 flex">
+                <div
+                  className={`flex flex-col justify-around my-5 px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={leftHandle}>
+                  {leftIconReturn(todo)}
+                </div>
+                <div className="w-full">
+                  {todo.length > 0 ? (
+                    <Todos />
+                  ) : (
+                    <div
+                      className={`flex justify-center items-center  py-28 ${
+                        theme ? "bg-slate-200" : "bg-slate-500 text-slate-100"
+                      }`}>
+                      There is no todos.
+                    </div>
+                  )}
+                </div>
+                <div
+                  className={`flex flex-col justify-around my-5 px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={rightHandle}>
+                  {rightIconReturn(todo)}
+                </div>
               </div>
             )}
             {mobileState === 1 && (
-              <div className="my-20 flex justify-center items-center">
-                <Dialog />
+              <div className="flex my-5">
+                <div
+                  className={`flex flex-col justify-around my-5 px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={leftHandle}>
+                  {leftIconReturn(false)}
+                </div>
+                <div className="w-full flex justify-center items-center">
+                  <Dialog />
+                </div>
+                <div
+                  className={`flex flex-col justify-around my-5 px-2 ${
+                    theme ? "text-slate-600" : "text-slate-200"
+                  }`}
+                  onClick={rightHandle}>
+                  {rightIconReturn(false)}
+                </div>
               </div>
             )}
           </div>
-          <div
-            className="flex flex-col justify-center px-2 text-purple-800"
-            onClick={rightHandle}>
-            <RightIcon size={24} />
-          </div>
         </div>
       ) : (
-        <div className="ml-5 mr-16 sticky top-10 z-40">
+        <div className="ml-5 mr-16 sticky top-16 z-40">
           <div className="mb-5">
             <Notes device={true} />
           </div>

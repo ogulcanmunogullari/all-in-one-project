@@ -14,10 +14,10 @@ function NoteFooter({ note, cargo, theme }) {
   }
   return (
     <div
-      className={`flex justify-between pt-2 ${
+      className={`flex justify-between items-center p-2 ${
         theme ? "bg-slate-100" : "bg-slate-300"
       }`}>
-      <div>
+      <div className="flex flex-row items-center">
         {note.isDisabled ? (
           <button
             className="border border-none  bg-yellow-500 px-5 mr-5"

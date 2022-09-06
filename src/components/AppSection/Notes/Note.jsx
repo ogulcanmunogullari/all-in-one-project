@@ -13,7 +13,7 @@ function Note({ note, isDisabled, setCargo, theme }) {
       <textarea
         ref={textRef}
         disabled={isDisabled}
-        className={`w-full h-full resize-none ${
+        className={`w-full h-full resize-none p-2 ${
           isDisabled
             ? `${theme ? "bg-slate-100" : "bg-slate-300"}`
             : `${theme ? "white" : "bg-slate-200"}`
