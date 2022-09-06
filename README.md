@@ -5,6 +5,7 @@ This app helps you for focus your work and keeps everthing one screen.
 ## Features
 
 - [x] Timer
+- [ ] Timer Alert
 - [x] Todo List
 - [x] Notes List
 - [x] Light and Dark Mode
