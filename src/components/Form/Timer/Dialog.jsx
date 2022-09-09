@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Button from "@mui/material/Button"
+import Sound from "../../../alert-sound/trumpet.mp3"
 import { useSelector } from "react-redux"
 
 function Dialog() {
@@ -7,14 +8,35 @@ function Dialog() {
   const [interv, setInterv] = useState()
   const [status, setStatus] = useState(0)
   const theme = useSelector((state) => state.themeSlicer.theme)
-  const start = () => {
+  function playSound() {
+    const audio = new Audio(Sound)
+    audio.play()
+  }
+  let updatedMinute = time.m,
+    updatedSecond = time.s
+  function start() {
     run()
     setStatus(1)
     setInterv(setInterval(run, 1000))
   }
-  let updatedMinute = time.m,
-    updatedSecond = time.s
-  const run = () => {
+  function stop() {
+    clearInterval(interv)
+    setStatus(2)
+  }
+  function reset() {
+    clearInterval(interv)
+    setStatus(0)
+    setTime({ m: 0, s: 0 })
+  }
+  function resume() {
+    start()
+  }
+  if (time.m <= 0 && time.s <= 0 && status === 1) {
+    reset()
+    playSound()
+  }
+
+  function run() {
     if (updatedSecond === 0) {
       updatedMinute--
       updatedSecond = 59
@@ -23,17 +45,6 @@ function Dialog() {
     updatedSecond--
     setTime({ m: updatedMinute, s: updatedSecond })
   }
-  const stop = () => {
-    clearInterval(interv)
-    setStatus(2)
-  }
-
-  const reset = () => {
-    clearInterval(interv)
-    setStatus(0)
-    setTime({ m: 0, s: 0 })
-  }
-  const resume = () => start()
 
   return (
     <div
@@ -74,7 +85,8 @@ function Dialog() {
             color="error"
             style={{ width: "100%" }}
             onClick={() => setTime({ m: time.m - 1, s: time.s })}
-            variant="contained">
+            variant="contained"
+            disabled={time.m < 1}>
             <span className="text-lg font-semibold">-</span>
           </Button>
           <Button
