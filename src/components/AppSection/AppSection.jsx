@@ -67,9 +67,8 @@ function AppSection() {
             {mobileState === -1 && (
               <div className="flex my-5">
                 <div
-                  className={`flex flex-col justify-around px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={leftHandle}>
                   {leftIconReturn(note)}
                 </div>
@@ -79,19 +78,17 @@ function AppSection() {
                   ) : (
                     <div
                       className={`flex justify-center items-center py-28 
-                   ${
-                     theme === true
-                       ? "bg-slate-200"
-                       : "bg-slate-500 text-slate-100"
-                   }`}>
+                   ${theme === true
+                          ? "bg-slate-200"
+                          : "bg-slate-500 text-slate-100"
+                        }`}>
                       There is no notes.
                     </div>
                   )}
                 </div>
                 <div
-                  className={`flex flex-col justify-around px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={rightHandle}>
                   {rightIconReturn(note)}
                 </div>
@@ -100,9 +97,8 @@ function AppSection() {
             {mobileState === 0 && (
               <div className=" my-5 flex">
                 <div
-                  className={`flex flex-col justify-around my-5 px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around my-5 px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={leftHandle}>
                   {leftIconReturn(todo)}
                 </div>
@@ -111,17 +107,15 @@ function AppSection() {
                     <Todos />
                   ) : (
                     <div
-                      className={`flex justify-center items-center  py-28 ${
-                        theme ? "bg-slate-200" : "bg-slate-500 text-slate-100"
-                      }`}>
+                      className={`flex justify-center items-center  py-28 ${theme ? "bg-slate-200" : "bg-slate-500 text-slate-100"
+                        }`}>
                       There is no todos.
                     </div>
                   )}
                 </div>
                 <div
-                  className={`flex flex-col justify-around my-5 px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around my-5 px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={rightHandle}>
                   {rightIconReturn(todo)}
                 </div>
@@ -130,19 +124,17 @@ function AppSection() {
             {mobileState === 1 && (
               <div className="flex my-5">
                 <div
-                  className={`flex flex-col justify-around my-5 px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around my-5 px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={leftHandle}>
                   {leftIconReturn(false)}
                 </div>
-                <div className="w-full flex justify-center items-center">
+                <div className="flex justify-center flex-1 items-center">
                   <Dialog />
                 </div>
                 <div
-                  className={`flex flex-col justify-around my-5 px-2 ${
-                    theme ? "text-slate-600" : "text-slate-200"
-                  }`}
+                  className={`flex flex-col justify-around my-5 px-2 ${theme ? "text-slate-600" : "text-slate-200"
+                    }`}
                   onClick={rightHandle}>
                   {rightIconReturn(false)}
                 </div>

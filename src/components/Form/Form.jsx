@@ -65,9 +65,8 @@ function Form() {
   return (
     <section className="flex flex-col">
       <form
-        className={`p-5 flex flex-col justify-center sticky top-16 z-40 ${
-          theme ? "bg-slate-200" : "bg-slate-500"
-        }`}
+        className={`p-5 flex flex-col justify-center sticky top-16 z-40 ${theme ? "bg-slate-200" : "bg-slate-500"
+          }`}
         onSubmit={formHandle}>
         <TodoAdd
           todo={todo}
@@ -84,7 +83,7 @@ function Form() {
           <section className="my-5">
             <Todos device={true} />
           </section>
-          <div className="sticky bottom-0 mt-auto z-50">
+          <div className="sticky bottom-0 mt-auto z-50 ">
             <Dialog />
           </div>
         </>

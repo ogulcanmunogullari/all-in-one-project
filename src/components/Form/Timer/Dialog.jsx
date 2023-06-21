@@ -75,27 +75,27 @@ function Dialog() {
   return (
     <div
       className={`${theme ? "bg-slate-200" : "bg-slate-500"
-        } p-5 w-full flex flex-col gap-5`}>
-      <div className="flex flex-row justify-center">
+        } p-4 sm:p-5 flex w-full  gap-5 flex-col`}>
+      <div className="flex  justify-center">
         <span
           className={`${theme ? "text-slate-800" : "text-slate-300"
-            } text-7xl font-semibold`}>
+            } text-6xl sm:text-7xl font-semibold`}>
           {time.m < 10 ? "0" + time.m : time.m}
         </span>
         <span
           className={`${theme ? "text-slate-800" : "text-slate-300"
-            } text-7xl  font-semibold -mt-2`}>
+            } text-5xl sm:text-7xl  font-semibold  sm:-mt-2`}>
           :
         </span>
         <span
           className={`${theme ? "text-slate-800" : "text-slate-300"
-            } text-7xl font-semibold`}>
+            } text-6xl sm:text-7xl font-semibold`}>
           {time.s < 10 ? "0" + time.s : time.s}
         </span>
       </div>
 
       {status === 0 && (
-        <div className="flex gap-5 w-full">
+        <div className="flex flex-wrap gap-2 sm:gap-5 w-full">
           <Button
             color="success"
             style={{ width: "100%" }}
@@ -122,7 +122,7 @@ function Dialog() {
       )}
 
       {status === 1 && (
-        <div className="flex gap-5 w-full">
+        <div className="flex  gap-5 w-full">
           <Button
             color="error"
             style={{ width: "100%" }}
@@ -133,7 +133,7 @@ function Dialog() {
         </div>
       )}
       {status === 2 && (
-        <div className="flex gap-5 w-full">
+        <div className="flex gap-5 w-full flex-wrap">
           <Button
             style={{ width: "100%" }}
             onClick={() => resume()}
